@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springSecurity?serverTimezone=Asia/Seoul
+    username: jig123
+    password: root
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      #create : 서버 시작시마다 DB초기화, update : 수정사항만 DB에 반영, none : 동작 안 함
+      ddl-auto: create
+      naming:
+        # org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl : 변수명 그대로 테이블에 필드로 만듬
+        # org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy : 소문자와 언더바로 구성된 필드로 만듬
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      # true : jpa가 사용하는 기본 넘버링 전략을 사용, false : 기본 넘버링 전략 사용 안 함(각 클래스에서 설정?)
+      use-new-id-generator-mappings: false
+    # true : 콘솔에 sql 보이게 함
+    show-sql: false
+    # 콘솔에 sql 정렬
+    properties:
+      hibernate.format_sql: true
+
+jwt:
+  secretKey: secretKey1234567890 # base64로 인코딩된 암호 키, HS512를 사용할 것이기 때문에, 512비트(64바이트) 이상이 되어야 합니다. 영숫자 조합
+
+  access:
+    expiration: 3600000 # 1시간(60분) : (1000L(ms -> s) * 60L(s -> m) * 60L(m -> h))
+    header: Authorization
+
+  refresh:
+    expiration: 1209600000 # 14일 : (1000L(ms -> s) * 60L(s -> m) * 60L(m -> h) * 24L(h -> 하루) * 14)
+    header: Authorization-refresh
