@@ -26,7 +26,7 @@ role : ADMIN
 
 ### [테스트]
 ```
-- (회원 가입, 회원 정보 수정, 회원 탈퇴, 로그인, 로그아웃, 리프레시 토큰을 이용해서 재발급) 단위테스트
+- 유저 기능 통합 테스트 (회원 가입, 회원 정보 수정, 회원 탈퇴, 로그인, 로그아웃, 리프레시 토큰을 이용해서 재발급)
 com.example.userexample.services.user.UserTest
 
 ![img.png](img.png)
